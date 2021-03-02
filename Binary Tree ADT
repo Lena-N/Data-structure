@@ -134,7 +134,7 @@ else
 current=*pt;
 while(current){
   prev=current;
-  if(LT(pe->key,pt->entry.key))
+  if(LT(pe->key,current->entry.key))
   current=current->left;
   else
   current=current->right;
