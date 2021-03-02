@@ -169,7 +169,7 @@ while(current){
 
 
 
-void deleteNode(Tree *pt){ //ineffecient way
+void deleteNode(Tree *pt){ //inefficient way
 *q=*pt;
 if(!*pt->right)
   *pt=pt->left;
@@ -184,7 +184,7 @@ free(q);
 
 
 
-void deleteNode(Tree *pt){ //effecient way
+void deleteNode(Tree *pt){ //inefficient way
 if(!*pt->right)
   *pt=pt->left;
 else if(!*pt->left)
