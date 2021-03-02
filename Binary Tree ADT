@@ -1,0 +1,197 @@
+1. Create the tree,leaving it empty.
+2. Determine whether the tree is empty or not
+3. Determine whether the treeis full or not
+4. Find the size of the tree.
+5. Traversethetree, visiting each entry
+6. Clear thetreeto make it empty
+********************************************
+binary search tree
+********************************************
+1. Insert a newentry (we have to define where) 
+2.Delete an entry (we haveto define from where) 
+
+
+
+typedef struct treenode{
+TreeEntry entry;
+struct treenode *left, *right;
+}TreeNode;
+
+typedef TreeNode * Tree;//
+
+
+void CreateTree(Tree *pt){
+*pt=NULL;
+}
+
+
+int TreeEmpty(Tree *pt){
+return (!*pt);
+}
+
+int TreeFull(Tree *pt){ 
+return 0;
+}
+
+
+//Pre: Tree has been created and intialized. 
+//Post: Inorder traversal.
+void InorderRec(Tree *pt, void(*pvisit)(TreeEntry)){
+  if (*pt){
+  InorderRec(&(*pt)->left, pvisit);
+  (*pvisit)((*pt)->entry);
+  InorderRec(&(*pt)->right, pvisit);
+   } 
+ } 
+ 
+ 
+ void Inorder(Tree *pt, void (* pvisit)(TreeEntry)){
+ Stack s;
+ void *p=(void *)(*pt); 
+ if(p){ 
+ CreateStack(&s);
+   do{
+   while(p){ 
+   Push(p, &s);
+   p=(void *)(((TreeNode *)p)->left);
+ } 
+ if(!StackEmpty(&s)){ 
+ Pop(&p, &s); 
+ (*pvisit) (((TreeNode *)p)->entry);
+ p=(void *)(((TreeNode *)p)->right);
+ }
+ }while(!StackEmpty(&s) || p); }
+}
+
+
+void ClearTreeRecAux(Tree *pt){ 
+if (*pt){
+ClearTreeRecAux(&(*pt)->left);
+ClearTreeRecAux(&(*pt)->right); 
+free(*pt); }
+}
+
+
+void ClearTreeRec(Tree *pt){ 
+ClearTreeRecAux(pt);
+*pt=NULL;
+}
+
+
+*************************************************** 
+Void InsertTreeRec(Tree *pt, TreeNode *pe){
+if(!*pt){
+*pt = (Tree) malloc (size of(treenode));
+(*pt)->entry =*pe;
+(*pt)->left=null;
+(*pt)->right=null;
+}
+else if(LS(pe->key,(*pt->entry.key))
+   InsertTreeRec(&(*pt)->left),pe);
+else
+   InsertTreeRec(&(*pt)->right),pe);
+}
+
+
+int TreeSize(Tree *pt){
+if (!*pt)
+   return 0;
+else 
+return(1+TreeSize(&(*pt)->left))+TreeSize(&(*pt)->right))
+}
+
+
+int TreeDepth(Tree *pt){
+if (!pt)
+ return 0;
+else 
+int a=TreeDEpth(&(*pt)->right);
+int b=TreeDepth(&(*pt)->left);
+return(a>b)?1+a:1+b;
+
+
+void InsertTree (Tree *pt,Treeentry *pe){
+TreeNode *p ,*current ,*prev;
+*p=(tree)malloc(size of(treenode));
+p->entry=*pe;
+p->left=null;
+p->right=null;
+if(!*pt)
+   *pt=p;
+else 
+current=*pt;
+while(current){
+  prev=current;
+  if(LT(pe->key,pt->entry.key))
+  current=current->left;
+  else
+  current=current->right;
+  }
+  if(LT(pe->key,prev->entry.key))
+     prev->left=p;
+  else
+     prev->right=p;
+ }
+ 
+ 
+ 
+ int deleteTree(Tree *pt,TreeEntry *pe,int key){
+ int found=o;    treeNode *q=*pt,*r=null;
+ while(q & !(found=(EQ(k,q->entry.key))
+  r=q;
+  if(LT(k,q->entry.key)
+     q=q->right;
+  else
+     q=q->left;
+  }
+  if(found){
+  *pe=q->entry;
+  if(!r)
+   deleteNOde(Pt);
+  else if(LT(k,r->entry.key)
+   deleteNode(&(r->left);
+  else
+   deleteNode(&(r->right);
+ return(found);
+}
+
+
+void deleteNode(Tree *pt){
+*q=*pt;
+if(!*pt->right)
+  *pt=pt->left;
+else if(!*pt->left)
+   *pt=pt->right;
+else
+*pt=(*pt)->right;
+for(r=q->right;r->left;r=r->left);
+  r->left=q->left;
+free(q);
+}
+
+
+
+void deleteNode(Tree *pt){
+if(!*pt->right)
+  *pt=pt->left;
+else if(!*pt->left)
+   *pt=pt->right;
+ else{
+  q=(*pt)->left;
+  if(!q->right){
+   pt->entry=q->entry;
+   (*pt)->left=q->left;
+   }
+   else{
+     do{
+     r=q;
+     q=q->right;
+     }while(q->right);
+     (*pt)->entry=q->entry;
+    r->right=q->left;
+    }
+  }
+  free(q)
+}
+
+
