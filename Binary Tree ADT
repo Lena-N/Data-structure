@@ -20,18 +20,23 @@ struct treenode *left, *right;
 typedef TreeNode * Tree;//
 
 
+
 void CreateTree(Tree *pt){
 *pt=NULL;
 }
+
 
 
 int TreeEmpty(Tree *pt){
 return (!*pt);
 }
 
+
+
 int TreeFull(Tree *pt){ 
 return 0;
 }
+
 
 
 //Pre: Tree has been created and intialized. 
@@ -43,6 +48,7 @@ void InorderRec(Tree *pt, void(*pvisit)(TreeEntry)){
   InorderRec(&(*pt)->right, pvisit);
    } 
  } 
+ 
  
  
  void Inorder(Tree *pt, void (* pvisit)(TreeEntry)){
@@ -64,6 +70,7 @@ void InorderRec(Tree *pt, void(*pvisit)(TreeEntry)){
 }
 
 
+
 void ClearTreeRecAux(Tree *pt){ 
 if (*pt){
 ClearTreeRecAux(&(*pt)->left);
@@ -76,6 +83,7 @@ void ClearTreeRec(Tree *pt){
 ClearTreeRecAux(pt);
 *pt=NULL;
 }
+
 
 
 *************************************************** 
@@ -91,6 +99,8 @@ else if(LS(pe->key,(*pt->entry.key))
 else
    InsertTreeRec(&(*pt)->right),pe);
 }
+}
+
 
 
 int TreeSize(Tree *pt){
@@ -101,6 +111,7 @@ return(1+TreeSize(&(*pt)->left))+TreeSize(&(*pt)->right))
 }
 
 
+
 int TreeDepth(Tree *pt){
 if (!pt)
  return 0;
@@ -108,6 +119,7 @@ else
 int a=TreeDEpth(&(*pt)->right);
 int b=TreeDepth(&(*pt)->left);
 return(a>b)?1+a:1+b;
+
 
 
 void InsertTree (Tree *pt,Treeentry *pe){
@@ -156,7 +168,8 @@ while(current){
 }
 
 
-void deleteNode(Tree *pt){
+
+void deleteNode(Tree *pt){ //ineffecient way
 *q=*pt;
 if(!*pt->right)
   *pt=pt->left;
@@ -171,7 +184,7 @@ free(q);
 
 
 
-void deleteNode(Tree *pt){
+void deleteNode(Tree *pt){ //effecient way
 if(!*pt->right)
   *pt=pt->left;
 else if(!*pt->left)
